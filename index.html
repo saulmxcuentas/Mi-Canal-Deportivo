@@ -382,29 +382,56 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
   .controles button{padding:7px 12px;font-size:11px;gap:5px;}
 }
 
-/* ===== MÓVIL PEQUEÑO ===== */
+/* ===== MÓVIL PEQUEÑO: TODO MÁS COMPACTO ===== */
 @media(max-width:600px){
-  .my-header{height:60px;padding:0 14px;}
-  .brand .logo{width:38px;height:38px;font-size:18px;}
-  .brand .name{font-size:16px;}
+  .my-header{height:56px;padding:0 12px;}
+  .brand .logo{width:36px;height:36px;font-size:17px;border-radius:10px;}
+  .brand .name{font-size:15px;}
+  .brand .sub{font-size:9px;letter-spacing:2px;}
   .estado{display:none;}
-  .btn-header{padding:8px 14px;font-size:12px;}
-  .main-container{padding:18px;border-radius:16px;}
-  .titulo{font-size:22px;}
-  .info-partido .titulo-partido-con-logos .fila-texto{font-size:17px;}
-  .info-partido .titulo-partido-con-logos .fila-escudos{gap:50px;}
+  .btn-header{padding:7px 12px;font-size:11px;gap:6px;border-radius:10px;}
+  .header-actions{gap:8px;}
+  .main-container{padding:16px;border-radius:14px;}
+  .titulo{font-size:20px;}
+  .estado-transmitiendo{font-size:11px;padding:6px 12px;gap:6px;}
+  .header-deportes{margin-bottom:14px;gap:8px;}
+
+  /* Modos */
+  .mode-buttons{gap:6px;margin-bottom:10px;}
+  .mode-btn{min-width:calc(50% - 3px);padding:8px 8px;font-size:10px;gap:5px;border-radius:8px;}
+  .mode-btn i{font-size:11px;}
+
+  /* Info partido */
+  .info-partido{margin-top:14px;}
+  .info-partido .titulo-partido-con-logos{gap:6px;}
+  .info-partido .titulo-partido-con-logos .fila-texto{font-size:15px;}
+  .info-partido .titulo-partido-con-logos .fila-escudos{gap:40px;margin-top:2px;}
   .info-partido .titulo-partido-con-logos .fila-escudos img,
-  .info-partido .titulo-partido-con-logos .fila-escudos .escudo-placeholder{width:46px;height:46px;font-size:22px;}
-  .info-partido .liga{font-size:11px;letter-spacing:1.5px;}
-  .header-deportes{flex-direction:column;align-items:flex-start;}
-  .controles{gap:6px;}
-  .controles button{padding:8px 8px;font-size:10.5px;gap:4px;}
-  .controles button i{font-size:11px;}
+  .info-partido .titulo-partido-con-logos .fila-escudos .escudo-placeholder{width:40px;height:40px;font-size:18px;}
+  .info-partido .liga{font-size:10px;letter-spacing:1.2px;margin-top:6px;}
+
+  /* Servidores */
+  .server-selector{margin-top:12px;padding:10px;gap:8px;border-radius:10px;}
+  .server-selector .server-label{font-size:10px;gap:5px;letter-spacing:1px;}
+  .server-btn{padding:6px 14px;font-size:11px;gap:6px;border-radius:8px;}
+
+  /* Controles del reproductor */
+  .controles{margin-top:12px;gap:6px;}
+  .controles button{padding:8px 6px;font-size:10px;gap:4px;border-radius:8px;letter-spacing:0.2px;}
+  .controles button i{font-size:10px;}
+
+  /* Lista */
   .channel-list{grid-template-columns:repeat(2, 1fr);gap:8px;padding:10px;}
-  .channel-item{min-height:96px;padding:10px 6px;}
-  .channel-item .ch-name{font-size:11px;}
-  .channel-item .ch-comp{font-size:8.5px;}
-  .channel-item .ch-meta .live-badge{font-size:9px;}
+  .channel-item{min-height:92px;padding:10px 6px;border-radius:11px;}
+  .channel-item .ch-info{gap:4px;padding:0 2px;}
+  .channel-item .ch-name{font-size:11px;line-height:1.3;}
+  .channel-item .ch-meta .live-badge{font-size:9px;letter-spacing:0.5px;}
+  .channel-item .ch-comp{font-size:8.5px;letter-spacing:0.6px;}
+  .channel-item .ch-slot-badge{font-size:7.5px;padding:2px 6px;top:6px;right:6px;}
+
+  /* Toast */
+  .toast-multiview{padding:11px 20px;font-size:12px;gap:8px;border-radius:10px;top:70px;}
+  .btn-salir-teatro{padding:9px 14px;font-size:11px;gap:6px;border-radius:10px;}
 }
 </style>
 </head>
@@ -1165,7 +1192,7 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
     return false;
   }
   if(!checkSession()) showLogin();
-  console.log('✅ Mi Canal Deportivo OK. Lista sin escudos.');
+  console.log('✅ Mi Canal Deportivo OK. Botones compactos para móvil.');
 })();
 </script>
 </body>
