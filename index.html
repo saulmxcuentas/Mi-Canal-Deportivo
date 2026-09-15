@@ -31,8 +31,6 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,229,160,0.3);}
 .login-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
 .login-btn .spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(10,14,23,0.3);border-top-color:#0a0e17;border-radius:50%;animation:spin 0.7s linear infinite;}
-.login-btn-secondary{background:linear-gradient(135deg,var(--cyan),#0099cc)!important;color:#0a0e17!important;}
-.login-btn-secondary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,255,0.3)!important;}
 .login-footer{text-align:center;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,229,160,0.08);color:#6b7280;font-size:0.82rem;}
 .login-footer i{color:var(--neon);}
 .notification{display:none;align-items:center;gap:10px;padding:11px 16px;border-radius:12px;font-size:0.85rem;margin-bottom:16px;}
@@ -54,21 +52,6 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .btn-header{padding:9px 18px;border:none;border-radius:12px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px;transition:all 0.25s ease;}
 .btn-recargar{background:rgba(0,229,160,0.1);color:var(--neon);border:1px solid rgba(0,229,160,0.2);}
 .btn-recargar:hover{background:var(--neon);color:#0a0e17;border-color:var(--neon);}
-.btn-hoy-icon{
-  width:38px;height:38px;padding:0!important;border-radius:50%;
-  background:rgba(0,212,255,0.08);color:var(--cyan);
-  border:1px solid rgba(0,212,255,0.2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:15px;position:relative;
-  cursor:pointer;font-family:inherit;
-  transition:all 0.25s ease;
-}
-.btn-hoy-icon:hover{background:var(--cyan);color:#0a0e17;border-color:var(--cyan);transform:scale(1.08);}
-.btn-hoy-icon::after{
-  content:'';position:absolute;top:2px;right:2px;
-  width:8px;height:8px;background:var(--neon);border-radius:50%;
-  border:2px solid #0a0e17;animation:parpadeo 1.8s infinite;
-}
 .btn-salir{background:rgba(255,255,255,0.05);color:#9ca3af;border:1px solid rgba(255,255,255,0.08);}
 .btn-salir:hover{background:rgba(255,59,59,0.12);color:#ff6b6b;border-color:#ff3b3b;}
 .main-layout{flex:1;display:flex;overflow:hidden;background:#0a0e17;}
@@ -78,44 +61,120 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .sidebar-header h2 i{color:var(--neon);}
 .sidebar-header h2 .live-count{margin-left:auto;background:linear-gradient(135deg,var(--neon),var(--cyan));color:#0a0e17;font-size:11px;padding:3px 10px;border-radius:10px;font-weight:800;}
 .sidebar-header p{font-size:11px;color:#6b7280;margin-top:6px;}
+
+/* ===== LISTA DE PARTIDOS (SIN ESCUDOS) ===== */
 .channel-list{
   flex:1;
   overflow-y:auto;
-  padding:12px;
+  overflow-x:hidden;
+  padding:14px;
   display:grid;
   grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
-  gap:10px;
+  gap:12px;
   align-content:start;
+  -webkit-overflow-scrolling:touch;
 }
 .channel-list::-webkit-scrollbar{width:6px;}
 .channel-list::-webkit-scrollbar-thumb{background:rgba(0,229,160,0.25);border-radius:3px;}
+.channel-list::-webkit-scrollbar-track{background:transparent;}
+
 .channel-item{
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:12px;
-  border-radius:12px;
+  justify-content:center;
+  padding:14px 12px;
+  min-height:96px;
+  border-radius:14px;
   cursor:pointer;
   transition:all 0.2s ease;
-  border:1px solid transparent;
+  border:1.5px solid rgba(0,229,160,0.12);
   position:relative;
   overflow:hidden;
   min-width:0;
-  background:rgba(0,229,160,0.02);
+  background:rgba(0,229,160,0.03);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
-.channel-item:hover{background:rgba(0,229,160,0.08);border-color:rgba(0,229,160,0.2);}
-.channel-item.active{background:linear-gradient(135deg,rgba(0,229,160,0.15),rgba(0,229,160,0.05));border-color:var(--neon);}
-.channel-item .ch-icon{width:40px;height:40px;border-radius:10px;background:rgba(0,229,160,0.08);display:flex;align-items:center;justify-content:center;color:var(--neon);font-size:16px;flex-shrink:0;position:relative;}
-.channel-item .ch-icon::after{content:'';position:absolute;top:-3px;right:-3px;width:10px;height:10px;background:var(--neon);border-radius:50%;border:2px solid #0d1220;animation:parpadeo 1.2s infinite;}
-.channel-item.active .ch-icon{background:var(--neon);color:#0a0e17;}
-.channel-item .ch-info{flex:1;min-width:0;}
-.channel-item .ch-name{font-size:12.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.channel-item .ch-meta{font-size:10.5px;color:#6b7280;margin-top:3px;display:flex;align-items:center;gap:6px;}
-.channel-item .ch-meta .live-badge{color:var(--neon);font-weight:700;display:flex;align-items:center;gap:4px;}
-.channel-item .ch-meta .live-badge::before{content:'';width:6px;height:6px;background:var(--neon);border-radius:50%;animation:parpadeo 1.5s infinite;}
-.channel-item .ch-comp{font-size:9.5px;color:var(--cyan);font-weight:700;margin-top:3px;text-transform:uppercase;letter-spacing:0.6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.channel-item .ch-slot-badge{position:absolute;top:6px;right:6px;background:linear-gradient(135deg,var(--neon),var(--cyan));color:#0a0e17;font-size:8.5px;font-weight:800;padding:2px 7px;border-radius:10px;}
+.channel-item:hover{
+  background:rgba(0,229,160,0.08);
+  border-color:rgba(0,229,160,0.3);
+  transform:translateY(-1px);
+}
+.channel-item:active{transform:scale(0.98);}
+.channel-item.active{
+  background:linear-gradient(135deg,rgba(0,229,160,0.15),rgba(0,229,160,0.05));
+  border-color:var(--neon);
+  box-shadow:0 0 0 2px rgba(0,229,160,0.15);
+}
+.channel-item .ch-info{
+  width:100%;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  padding:0 4px;
+}
+.channel-item .ch-name{
+  font-size:12.5px;
+  font-weight:800;
+  color:#fff;
+  line-height:1.35;
+  white-space:normal;
+  word-break:break-word;
+  letter-spacing:0.3px;
+}
+.channel-item .ch-meta{
+  font-size:10px;
+  color:#6b7280;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+.channel-item .ch-meta .live-badge{
+  color:var(--neon);
+  font-weight:800;
+  font-size:10px;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  letter-spacing:1px;
+}
+.channel-item .ch-meta .live-badge::before{
+  content:'';
+  width:6px;height:6px;
+  background:var(--neon);
+  border-radius:50%;
+  animation:parpadeo 1.5s infinite;
+}
+.channel-item .ch-comp{
+  font-size:9.5px;
+  color:var(--cyan);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:0.8px;
+  white-space:normal;
+  word-break:break-word;
+  line-height:1.3;
+}
+.channel-item .ch-slot-badge{
+  position:absolute;
+  top:8px;
+  right:8px;
+  background:linear-gradient(135deg,var(--neon),var(--cyan));
+  color:#0a0e17;
+  font-size:8.5px;
+  font-weight:800;
+  padding:3px 8px;
+  border-radius:10px;
+  letter-spacing:0.5px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.4);
+  z-index:2;
+}
 .channel-item .ch-slot-badge.activo{background:#fff;color:#0a0e17;}
+/* ===== FIN LISTA DE PARTIDOS ===== */
+
 .player-column{flex:1;display:flex;flex-direction:column;background:#0a0e17;overflow:hidden;padding:24px;order:2;min-height:0;}
 .main-container{max-width:980px;width:100%;background:#111827;border-radius:22px;padding:34px;box-shadow:0 0 80px rgba(0,0,0,0.9);border:1px solid #1f2937;margin:0 auto;display:flex;flex-direction:column;max-height:100%;overflow:hidden;}
 .header-deportes{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;flex-shrink:0;}
@@ -138,19 +197,7 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .view-grid.v3{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
 .view-grid.v3 .view-slot:nth-child(1){grid-column:1 / -1;}
 .view-grid.v4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
-.view-slot{
-  position:relative;
-  background:#000;
-  border-radius:14px;
-  overflow:hidden;
-  border:2px solid transparent;
-  transition:border-color 0.25s ease;
-  display:flex;
-  min-height:0;
-  min-width:0;
-  height:100%;
-  width:100%;
-}
+.view-slot{position:relative;background:#000;border-radius:14px;overflow:hidden;border:2px solid transparent;transition:border-color 0.25s ease;display:flex;min-height:0;min-width:0;height:100%;width:100%;}
 .view-grid.v1 .view-slot{aspect-ratio:16/9;height:auto;max-height:60vh;margin:0 auto;}
 .view-slot.active-slot{border-color:var(--neon);box-shadow:0 0 0 2px rgba(0,229,160,0.25),0 0 28px rgba(0,229,160,0.15);}
 .view-slot .slot-video{width:100%;height:100%;object-fit:contain;background:#000;display:block;outline:none;}
@@ -174,10 +221,52 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .view-grid-empty-state i{font-size:72px;color:#1f2937;}
 .view-grid-empty-state h3{font-size:19px;color:#6b7280;font-weight:700;}
 .view-grid-empty-state p{font-size:13px;color:#4b5563;max-width:420px;line-height:1.7;}
+
+/* ===== INFO PARTIDO ===== */
 .info-partido{margin-top:20px;text-align:center;flex-shrink:0;}
-.info-partido h2{color:#fff;font-size:26px;font-weight:800;letter-spacing:-0.5px;}
-.info-partido h2 span{color:var(--neon);}
-.info-partido .liga{color:#6b7280;font-size:14px;margin-top:6px;letter-spacing:2.5px;text-transform:uppercase;}
+.info-partido .titulo-partido-con-logos{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.info-partido .titulo-partido-con-logos .fila-texto{
+  color:#fff;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:-0.5px;
+  text-align:center;
+}
+.info-partido .titulo-partido-con-logos .fila-texto span{
+  color:var(--neon);
+}
+.info-partido .titulo-partido-con-logos .fila-escudos{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:80px;
+  margin-top:4px;
+}
+.info-partido .titulo-partido-con-logos .fila-escudos img{
+  width:58px;
+  height:58px;
+  object-fit:contain;
+  filter:drop-shadow(0 3px 10px rgba(0,0,0,0.7));
+}
+.info-partido .titulo-partido-con-logos .fila-escudos .escudo-placeholder{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  color:rgba(0,229,160,0.35);
+  border:2px dashed rgba(0,229,160,0.25);
+  border-radius:50%;
+}
+.info-partido .liga{color:#6b7280;font-size:14px;margin-top:10px;letter-spacing:2.5px;text-transform:uppercase;}
+/* ===== FIN INFO PARTIDO ===== */
+
 .server-selector{margin-top:16px;display:none;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;padding:14px;background:rgba(0,229,160,0.04);border:1px solid rgba(0,229,160,0.12);border-radius:14px;flex-shrink:0;}
 .server-selector.visible{display:flex;}
 .server-selector .server-label{color:#6b7280;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;display:flex;align-items:center;gap:8px;}
@@ -185,36 +274,8 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .server-btn{padding:9px 22px;border-radius:12px;border:1px solid rgba(0,229,160,0.2);background:rgba(0,229,160,0.06);color:#9ca3af;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.25s ease;font-family:inherit;display:flex;align-items:center;gap:8px;}
 .server-btn:hover{background:rgba(0,229,160,0.15);color:#fff;border-color:var(--neon);}
 .server-btn.active{background:linear-gradient(135deg,var(--neon),var(--neon-hover));color:#0a0e17;border-color:var(--neon);box-shadow:0 0 20px rgba(0,229,160,0.3);}
-.controles{
-  margin-top:18px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-  flex-wrap:nowrap;
-  flex-shrink:0;
-  width:100%;
-}
-.controles button{
-  flex:1 1 0;
-  min-width:0;
-  padding:9px 12px;
-  border:none;
-  border-radius:10px;
-  font-weight:700;
-  font-size:11.5px;
-  cursor:pointer;
-  transition:all 0.25s ease;
-  letter-spacing:0.3px;
-  font-family:inherit;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
+.controles{margin-top:18px;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:nowrap;flex-shrink:0;width:100%;}
+.controles button{flex:1 1 0;min-width:0;padding:9px 12px;border:none;border-radius:10px;font-weight:700;font-size:11.5px;cursor:pointer;transition:all 0.25s ease;letter-spacing:0.3px;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .controles button i{font-size:12px;}
 .controles button:disabled{opacity:0.4;cursor:not-allowed;}
 .btn-neon{background:linear-gradient(135deg,var(--neon),var(--neon-hover));color:#0a0e17;}
@@ -229,227 +290,121 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .toast-multiview{position:fixed;top:84px;left:50%;transform:translateX(-50%) translateY(-20px);background:linear-gradient(135deg,rgba(0,229,160,0.95),rgba(0,180,130,0.95));color:#0a0e17;padding:15px 28px;border-radius:14px;font-size:14px;font-weight:800;z-index:9999;display:flex;align-items:center;gap:12px;opacity:0;pointer-events:none;transition:all 0.4s ease;box-shadow:0 8px 32px rgba(0,229,160,0.3);}
 .toast-multiview.visible{opacity:1;transform:translateX(-50%) translateY(0);}
 @keyframes spin{to{transform:rotate(360deg);}}
-.view-grid:fullscreen,
-.view-grid:-webkit-full-screen {
-  width: 100vw;
-  height: 100vh;
-  max-height: none;
-  padding: 0;
-  margin: 0;
-  background: #000;
-  gap: 2px;
-  border-radius: 0;
-  flex: none;
-}
-.view-grid:fullscreen.v1,
-.view-grid:-webkit-full-screen.v1 { grid-template-columns:1fr; grid-template-rows:1fr; }
-.view-grid:fullscreen.v2,
-.view-grid:-webkit-full-screen.v2 { grid-template-columns:1fr 1fr; grid-template-rows:1fr; }
-.view-grid:fullscreen.v3,
-.view-grid:-webkit-full-screen.v3 { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; }
-.view-grid:fullscreen.v3 .view-slot:nth-child(1),
-.view-grid:-webkit-full-screen.v3 .view-slot:nth-child(1) { grid-column:1 / -1; }
-.view-grid:fullscreen.v4,
-.view-grid:-webkit-full-screen.v4 { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; }
-.view-grid:fullscreen .view-slot,
-.view-grid:-webkit-full-screen .view-slot {
-  aspect-ratio: auto !important;
-  max-height: none !important;
-  height: 100%;
-  width: 100%;
-  border-radius: 0;
-}
-.view-grid:fullscreen .view-slot .slot-video,
-.view-grid:-webkit-full-screen .view-slot .slot-video { object-fit: contain; }
-.view-grid:fullscreen .view-slot.active-slot,
-.view-grid:-webkit-full-screen .view-slot.active-slot { border-color: transparent; box-shadow: none; }
-body.modo-teatro .view-grid {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  width: 100vw;
-  height: 100vh;
-  max-height: none;
-  padding: 0;
-  margin: 0;
-  background: #000;
-  gap: 2px;
-  border-radius: 0;
-  flex: none;
-}
-body.modo-teatro .view-grid.v1 { grid-template-columns:1fr; grid-template-rows:1fr; }
-body.modo-teatro .view-grid.v2 { grid-template-columns:1fr 1fr; grid-template-rows:1fr; }
-body.modo-teatro .view-grid.v3 { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; }
-body.modo-teatro .view-grid.v3 .view-slot:nth-child(1) { grid-column:1 / -1; }
-body.modo-teatro .view-grid.v4 { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; }
-body.modo-teatro .view-grid .view-slot { aspect-ratio: auto !important; max-height: none !important; height: 100%; width: 100%; border-radius: 0; }
-body.modo-teatro .view-grid .view-slot .slot-video { object-fit: contain; }
-body.modo-teatro .view-grid .view-slot.active-slot { border-color: transparent; box-shadow: none; }
-body.modo-teatro { overflow: hidden; }
-.btn-salir-teatro {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 100000;
-  padding: 11px 20px;
-  background: rgba(0,229,160,0.9);
-  color: #0a0e17;
-  border: none;
-  border-radius: 12px;
-  font-weight: 800;
-  font-size: 13px;
-  cursor: pointer;
-  font-family: inherit;
-  display: none;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.6);
-  transition: all 0.2s ease;
-}
-body.modo-teatro .btn-salir-teatro { display: flex; }
-.btn-salir-teatro:hover { background: var(--neon); transform: scale(1.05); }
+.view-grid:fullscreen,.view-grid:-webkit-full-screen{width:100vw;height:100vh;max-height:none;padding:0;margin:0;background:#000;gap:2px;border-radius:0;flex:none;}
+.view-grid:fullscreen.v1,.view-grid:-webkit-full-screen.v1{grid-template-columns:1fr;grid-template-rows:1fr;}
+.view-grid:fullscreen.v2,.view-grid:-webkit-full-screen.v2{grid-template-columns:1fr 1fr;grid-template-rows:1fr;}
+.view-grid:fullscreen.v3,.view-grid:-webkit-full-screen.v3{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+.view-grid:fullscreen.v3 .view-slot:nth-child(1),.view-grid:-webkit-full-screen.v3 .view-slot:nth-child(1){grid-column:1 / -1;}
+.view-grid:fullscreen.v4,.view-grid:-webkit-full-screen.v4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+.view-grid:fullscreen .view-slot,.view-grid:-webkit-full-screen .view-slot{aspect-ratio:auto !important;max-height:none !important;height:100%;width:100%;border-radius:0;}
+.view-grid:fullscreen .view-slot .slot-video,.view-grid:-webkit-full-screen .view-slot .slot-video{object-fit:contain;}
+.view-grid:fullscreen .view-slot.active-slot,.view-grid:-webkit-full-screen .view-slot.active-slot{border-color:transparent;box-shadow:none;}
+body.modo-teatro .view-grid{position:fixed;inset:0;z-index:99999;width:100vw;height:100vh;max-height:none;padding:0;margin:0;background:#000;gap:2px;border-radius:0;flex:none;}
+body.modo-teatro .view-grid.v1{grid-template-columns:1fr;grid-template-rows:1fr;}
+body.modo-teatro .view-grid.v2{grid-template-columns:1fr 1fr;grid-template-rows:1fr;}
+body.modo-teatro .view-grid.v3{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+body.modo-teatro .view-grid.v3 .view-slot:nth-child(1){grid-column:1 / -1;}
+body.modo-teatro .view-grid.v4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+body.modo-teatro .view-grid .view-slot{aspect-ratio:auto !important;max-height:none !important;height:100%;width:100%;border-radius:0;}
+body.modo-teatro .view-grid .view-slot .slot-video{object-fit:contain;}
+body.modo-teatro .view-grid .view-slot.active-slot{border-color:transparent;box-shadow:none;}
+body.modo-teatro{overflow:hidden;}
+.btn-salir-teatro{position:fixed;top:18px;right:18px;z-index:100000;padding:11px 20px;background:rgba(0,229,160,0.9);color:#0a0e17;border:none;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;display:none;align-items:center;gap:8px;box-shadow:0 4px 24px rgba(0,0,0,0.6);transition:all 0.2s ease;}
+body.modo-teatro .btn-salir-teatro{display:flex;}
+.btn-salir-teatro:hover{background:var(--neon);transform:scale(1.05);}
 
-/* ====== MODAL PARTIDOS DE HOY ====== */
-.hoy-modal-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(8px);
-  z-index:99998;display:none;justify-content:center;align-items:center;padding:20px;
-}
-.hoy-modal-overlay.visible{display:flex;}
-.hoy-modal-card{
-  background:#111827;border-radius:18px;padding:24px;max-width:560px;width:100%;
-  border:1px solid rgba(0,212,255,0.2);box-shadow:0 24px 80px rgba(0,0,0,0.9);
-  max-height:88vh;display:flex;flex-direction:column;
-}
-.hoy-modal-header{
-  display:flex;align-items:center;gap:10px;margin-bottom:6px;
-  padding-bottom:14px;border-bottom:1px solid rgba(0,229,160,0.1);
-}
-.hoy-modal-title{
-  font-size:0.9rem;font-weight:800;color:var(--cyan);
-  text-transform:uppercase;letter-spacing:1.8px;
-  display:flex;align-items:center;gap:10px;
-}
-.hoy-modal-count{
-  margin-left:auto;background:linear-gradient(135deg,var(--neon),var(--cyan));
-  color:#0a0e17;font-size:11px;font-weight:800;padding:3px 11px;border-radius:10px;
-}
-.hoy-modal-close{
-  width:30px;height:30px;border:none;border-radius:50%;
-  background:rgba(255,59,59,0.1);color:#ff6b6b;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:12px;
-  font-family:inherit;transition:all 0.2s ease;
-}
-.hoy-modal-close:hover{background:#ff3b3b;color:#fff;}
-.hoy-modal-sub{
-  font-size:11px;color:#6b7280;margin:10px 0 14px;
-  display:flex;align-items:center;gap:6px;
-}
-.hoy-modal-list{
-  flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
-  padding:2px;min-height:120px;
-}
-.hoy-modal-list::-webkit-scrollbar{width:6px;}
-.hoy-modal-list::-webkit-scrollbar-thumb{background:rgba(0,229,160,0.25);border-radius:3px;}
-.hoy-modal-footer{
-  margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,229,160,0.08);
-  font-size:10.5px;color:#6b7280;text-align:center;display:flex;
-  align-items:center;justify-content:center;gap:6px;
-}
-.hoy-modal-footer i{color:var(--cyan);}
-.hoy-item{
-  display:flex;align-items:center;gap:12px;padding:12px 14px;
-  background:rgba(0,0,0,0.3);border:1px solid rgba(0,229,160,0.12);
-  border-radius:12px;transition:all 0.2s ease;
-}
-.hoy-item:hover{border-color:rgba(0,229,160,0.3);background:rgba(0,229,160,0.04);}
-.hoy-item .hoy-info{flex:1;min-width:0;}
-.hoy-item .hoy-equipos{
-  font-size:13px;font-weight:700;color:#fff;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.hoy-item .hoy-liga{
-  font-size:10.5px;color:var(--cyan);font-weight:700;margin-top:3px;
-  text-transform:uppercase;letter-spacing:0.5px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.hoy-item .hoy-fecha{font-size:10.5px;color:#6b7280;margin-top:3px;}
-.hoy-badge{
-  font-size:9.5px;font-weight:800;padding:4px 10px;border-radius:20px;
-  text-transform:uppercase;letter-spacing:0.8px;flex-shrink:0;white-space:nowrap;
-}
-.hoy-badge.vivo{
-  background:rgba(255,59,59,0.15);color:#ff6b6b;
-  border:1px solid rgba(255,59,59,0.3);
-}
-.hoy-badge.vivo::before{
-  content:'';display:inline-block;width:6px;height:6px;background:#ff6b6b;
-  border-radius:50%;margin-right:6px;animation:parpadeo 1.2s infinite;vertical-align:middle;
-}
-.hoy-badge.prog{
-  background:rgba(0,212,255,0.12);color:var(--cyan);
-  border:1px solid rgba(0,212,255,0.25);
-}
-.hoy-empty{
-  padding:36px 20px;text-align:center;color:#4b5563;font-size:12.5px;
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-}
-.hoy-empty i{font-size:38px;color:#1f2937;}
-.hoy-loading{
-  padding:36px 20px;text-align:center;color:#6b7280;font-size:12.5px;
-  display:flex;flex-direction:column;align-items:center;gap:14px;
-}
-.hoy-loading .ring{
-  width:38px;height:38px;border:3px solid rgba(0,229,160,0.15);
-  border-top-color:var(--neon);border-radius:50%;animation:spin 0.8s linear infinite;
-}
-
+/* ===== MEDIA QUERIES ===== */
 @media(max-width:1100px){
-.sidebar{width:380px;}
-.channel-list{grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));}
+  .sidebar{width:380px;}
+  .channel-list{grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));}
 }
+
+/* ===== CELULAR VERTICAL: 2 partidos por línea ===== */
 @media(max-width:900px) and (orientation:portrait){
-.main-layout{flex-direction:column;height:100%;overflow-y:auto;}
-.player-column{order:1;padding:16px;flex:0 0 auto;overflow:visible;height:auto;}
-.main-container{max-height:none;overflow:visible;padding:20px;}
-.sidebar{order:2;width:100%;max-height:420px;flex:0 0 auto;border-right:none;border-top:1px solid rgba(0,229,160,0.12);margin-bottom:20px;}
-.channel-list{grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));max-height:300px;}
-.mode-buttons{gap:10px;}
-.mode-btn{min-width:calc(33% - 8px);padding:11px 10px;font-size:11.5px;}
+  .main-layout{flex-direction:column;height:100%;overflow-y:auto;}
+  .player-column{order:1;padding:16px;flex:0 0 auto;overflow:visible;height:auto;}
+  .main-container{max-height:none;overflow:visible;padding:20px;}
+  .sidebar{
+    order:2;
+    width:100%;
+    max-height:none;
+    flex:0 0 auto;
+    border-right:none;
+    border-top:1px solid rgba(0,229,160,0.12);
+    margin-bottom:20px;
+  }
+  .channel-list{
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px;
+    max-height:none;
+    padding:12px;
+  }
+  .channel-item{
+    min-height:104px;
+    padding:12px 8px;
+  }
+  .channel-item .ch-name{font-size:11.5px;}
+  .channel-item .ch-comp{font-size:9px;}
+  .mode-buttons{gap:10px;}
+  .mode-btn{min-width:calc(33% - 8px);padding:11px 10px;font-size:11.5px;}
 }
+
+/* ===== CELULAR HORIZONTAL / TABLET: 1 partido por línea ===== */
 @media(max-width:900px) and (orientation:landscape){
-.main-layout{flex-direction:row;height:100vh;overflow:hidden;}
-.sidebar{width:260px;height:100vh;order:1;flex-shrink:0;}
-.sidebar-header{padding:12px 14px;}
-.channel-list{grid-template-columns:1fr;}
-.player-column{order:2;padding:10px;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.main-container{max-width:100%;padding:14px;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden;}
-.header-deportes{margin-bottom:10px;}
-.titulo{font-size:17px;}
-.estado-transmitiendo{font-size:11px;padding:6px 14px;}
-.mode-buttons{gap:8px;margin-bottom:10px;}
-.mode-btn{padding:8px 10px;font-size:10px;min-width:110px;}
-.info-partido h2{font-size:15px;}
-.info-partido .liga{font-size:10px;}
-.controles button{padding:7px 12px;font-size:11px;gap:5px;}
-.channel-item{padding:9px;}
-.channel-item .ch-icon{width:34px;height:34px;font-size:14px;}
-.channel-item .ch-name{font-size:12px;}
-.channel-item .ch-comp{font-size:9px;}
+  .main-layout{flex-direction:row;height:100vh;overflow:hidden;}
+  .sidebar{
+    width:260px;
+    height:100vh;
+    order:1;
+    flex-shrink:0;
+  }
+  .sidebar-header{padding:12px 14px;}
+  .channel-list{
+    grid-template-columns:1fr;
+    gap:10px;
+    padding:10px;
+  }
+  .channel-item{
+    min-height:78px;
+    padding:12px 14px;
+  }
+  .channel-item .ch-name{font-size:12px;}
+  .channel-item .ch-comp{font-size:9px;}
+  .player-column{order:2;padding:10px;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .main-container{max-width:100%;padding:14px;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden;}
+  .header-deportes{margin-bottom:10px;}
+  .titulo{font-size:17px;}
+  .estado-transmitiendo{font-size:11px;padding:6px 14px;}
+  .mode-buttons{gap:8px;margin-bottom:10px;}
+  .mode-btn{padding:8px 10px;font-size:10px;min-width:110px;}
+  .info-partido h2{font-size:15px;}
+  .info-partido .liga{font-size:10px;}
+  .controles button{padding:7px 12px;font-size:11px;gap:5px;}
 }
+
+/* ===== MÓVIL PEQUEÑO ===== */
 @media(max-width:600px){
-.my-header{height:60px;padding:0 14px;}
-.brand .logo{width:38px;height:38px;font-size:18px;}
-.brand .name{font-size:16px;}
-.estado{display:none;}
-.btn-header{padding:8px 14px;font-size:12px;}
-.btn-hoy-icon{width:34px;height:34px;font-size:13px;}
-.main-container{padding:18px;border-radius:16px;}
-.titulo{font-size:22px;}
-.info-partido h2{font-size:17px;}
-.header-deportes{flex-direction:column;align-items:flex-start;}
-.controles{gap:6px;}
-.controles button{padding:8px 8px;font-size:10.5px;gap:4px;}
-.controles button i{font-size:11px;}
+  .my-header{height:60px;padding:0 14px;}
+  .brand .logo{width:38px;height:38px;font-size:18px;}
+  .brand .name{font-size:16px;}
+  .estado{display:none;}
+  .btn-header{padding:8px 14px;font-size:12px;}
+  .main-container{padding:18px;border-radius:16px;}
+  .titulo{font-size:22px;}
+  .info-partido .titulo-partido-con-logos .fila-texto{font-size:17px;}
+  .info-partido .titulo-partido-con-logos .fila-escudos{gap:50px;}
+  .info-partido .titulo-partido-con-logos .fila-escudos img,
+  .info-partido .titulo-partido-con-logos .fila-escudos .escudo-placeholder{width:46px;height:46px;font-size:22px;}
+  .info-partido .liga{font-size:11px;letter-spacing:1.5px;}
+  .header-deportes{flex-direction:column;align-items:flex-start;}
+  .controles{gap:6px;}
+  .controles button{padding:8px 8px;font-size:10.5px;gap:4px;}
+  .controles button i{font-size:11px;}
+  .channel-list{grid-template-columns:repeat(2, 1fr);gap:8px;padding:10px;}
+  .channel-item{min-height:96px;padding:10px 6px;}
+  .channel-item .ch-name{font-size:11px;}
+  .channel-item .ch-comp{font-size:8.5px;}
+  .channel-item .ch-meta .live-badge{font-size:9px;}
 }
 </style>
 </head>
@@ -469,9 +424,6 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
         <input type="password" id="pinInput" class="form-input" placeholder="Ingresa tu PIN de 4 dígitos" maxlength="4" inputmode="numeric" required autofocus />
       </div>
       <button type="submit" class="login-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span id="btnText">Acceder</span></button>
-      <button type="button" class="login-btn login-btn-secondary" id="btnVerPartidosHoy">
-        <i class="fas fa-calendar-day"></i> Ver partidos de hoy
-      </button>
     </form>
     <div class="login-footer"><i class="fas fa-shield-halved"></i> PIN de acceso seguro</div>
   </div>
@@ -493,7 +445,6 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
     <div class="header-actions">
       <div class="estado"><span class="punto"></span> En vivo</div>
       <button class="btn-header btn-recargar" id="btnRecargar"><i class="fas fa-sync-alt"></i> Recargar</button>
-      <button class="btn-header btn-hoy-icon" id="btnHoyHeader" title="Partidos de hoy"><i class="fas fa-calendar-day"></i></button>
       <button class="btn-header btn-salir" id="btnSalirHeader"><i class="fas fa-sign-out-alt"></i> Salir</button>
     </div>
   </header>
@@ -525,7 +476,7 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
           <p>Selecciona un partido de la lista de la izquierda para comenzar a verlo.</p>
         </div>
         <div class="info-partido">
-          <h2 id="nombre-partido">Cargando...</h2>
+          <div class="titulo-partido-con-logos" id="tituloConLogos"></div>
           <div class="liga" id="liga-partido"></div>
         </div>
         <div class="server-selector" id="serverSelector"><span class="server-label"><i class="fas fa-server"></i> Servidor:</span></div>
@@ -540,248 +491,65 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   </div>
 </div>
 
-<!-- MODAL PARTIDOS DE HOY (SOLO VISUALIZACIÓN) -->
-<div class="hoy-modal-overlay" id="hoyModalOverlay">
-  <div class="hoy-modal-card">
-    <div class="hoy-modal-header">
-      <div class="hoy-modal-title"><i class="fas fa-calendar-day"></i> Partidos de hoy</div>
-      <span class="hoy-modal-count" id="hoyModalCount">0</span>
-      <button type="button" class="hoy-modal-close" id="hoyModalClose"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="hoy-modal-sub" id="hoyModalSub">Programación del día · Horarios en tu hora local</div>
-    <div class="hoy-modal-list" id="hoyModalList"></div>
-    <div class="hoy-modal-footer">
-      <i class="fas fa-info-circle"></i> Esta lista es solo informativa. Los partidos transmitidos aparecen en el panel principal.
-    </div>
-  </div>
-</div>
-
 <script>
 (function() {
   'use strict';
-  const PIN_ACCESO = '5555';
-  const PIN_VERSION = 27;
-  const PARTIDOS = [
-    { id: 1, nombre: 'BANFIELD vs BARRACAS CENTRAL', liga: '🏆 Liga Profesional de Fútbol (Argentina)', urls: [
-        'https://cdn.gambeta.vip/fl/tntsports.m3u8?k=183660895c5ed3d2cf56590c'
-      ], activo: false },
-    { id: 2, nombre: 'DEPORTIVO RIESTRA vs LANÚS', liga: '🏆 Liga Profesional de Fútbol (Argentina)', urls: [
-        'https://cdn.gambeta.vip/fl/disney11.m3u8?k=183660895c5ed3d2cf56590c'
-      ], activo: false },
-    { id: 3, nombre: 'MONTEVIDEO CITY TORQUE vs LIVERPOOL', liga: '🏆 Primera División (Uruguay)', urls: [
-        'https://cdn.gambeta.vip/fl/disney9.m3u8?k=183660895c5ed3d2cf56590c'
+  var PIN_ACCESO = '6666';
+  var PIN_VERSION = 28;
+  var PARTIDOS = [
+    { id: 1, nombre: 'KANSAS CITY CHIEFS vs DENVER BRONCOS', liga: '🏆 NFL (Estados Unidos)',
+      logo1: 'https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/kc.png', logo2: 'https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/den.png',
+      bandera1: '', bandera2: '',
+      urls: [
+        'https://cdn.gambeta.vip/fl/espn2.m3u8?k=352154ac90340181a76a75e0',
+        'https://cdn.gambeta.vip/fl/espnmx.m3u8?k=352154ac90340181a76a75e0'
       ], activo: false }
   ];
-  const MAX_SLOTS = 4;
-  const MAX_RETRIES = 3;
-  const RETRY_DELAY_MS = 1500;
+  var MAX_SLOTS = 4;
+  var MAX_RETRIES = 3;
+  var RETRY_DELAY_MS = 1500;
 
   function calcularHuellaCanal(){
-    const d = PIN_ACCESO + '|' + PARTIDOS.map(function(p){ return p.id+':'+p.nombre+':'+(p.urls?p.urls.join(','):''); }).join('||');
-    let h = 5381;
-    for(let i=0;i<d.length;i++){ h=((h<<5)+h)+d.charCodeAt(i); h=h&h; }
+    var d = PIN_ACCESO + '|' + PARTIDOS.map(function(p){ return p.id+':'+p.nombre+':'+(p.urls?p.urls.join(','):''); }).join('||');
+    var h = 5381;
+    for(var i=0;i<d.length;i++){ h=((h<<5)+h)+d.charCodeAt(i); h=h&h; }
     return 'h'+Math.abs(h).toString(36)+'_v'+PIN_VERSION;
   }
-  const HUELLA_CANAL = calcularHuellaCanal();
+  var HUELLA_CANAL = calcularHuellaCanal();
 
-  const loginContainer = document.getElementById('loginContainer');
-  const app = document.getElementById('app');
-  const loginForm = document.getElementById('loginForm');
-  const pinInput = document.getElementById('pinInput');
-  const loginBtn = document.getElementById('loginBtn');
-  const btnText = document.getElementById('btnText');
-  const notification = document.getElementById('notification');
-  const notificationMsg = document.getElementById('notificationMsg');
-  const btnSalirHeader = document.getElementById('btnSalirHeader');
-  const btnRecargar = document.getElementById('btnRecargar');
-  const toastMultiview = document.getElementById('toastMultiview');
-  const toastMsg = document.getElementById('toastMsg');
-  const btnModoSimple = document.getElementById('btnModoSimple');
-  const btnModoMultiple = document.getElementById('btnModoMultiple');
-  const btnCargar = document.getElementById('btn-cargar');
-  const btnReiniciar = document.getElementById('btn-reiniciar');
-  const btnVlc = document.getElementById('btn-vlc');
-  const btnFullscreen = document.getElementById('btn-fullscreen');
-  const btnSalirTeatro = document.getElementById('btnSalirTeatro');
-  const nombrePartido = document.getElementById('nombre-partido');
-  const ligaPartido = document.getElementById('liga-partido');
-  const channelList = document.getElementById('channelList');
-  const liveCount = document.getElementById('liveCount');
-  const channelCount = document.getElementById('channelCount');
-  const serverSelector = document.getElementById('serverSelector');
-  const viewGrid = document.getElementById('viewGrid');
-  const emptyState = document.getElementById('emptyState');
+  var loginContainer = document.getElementById('loginContainer');
+  var app = document.getElementById('app');
+  var loginForm = document.getElementById('loginForm');
+  var pinInput = document.getElementById('pinInput');
+  var loginBtn = document.getElementById('loginBtn');
+  var btnText = document.getElementById('btnText');
+  var notification = document.getElementById('notification');
+  var notificationMsg = document.getElementById('notificationMsg');
+  var btnSalirHeader = document.getElementById('btnSalirHeader');
+  var btnRecargar = document.getElementById('btnRecargar');
+  var toastMultiview = document.getElementById('toastMultiview');
+  var toastMsg = document.getElementById('toastMsg');
+  var btnModoSimple = document.getElementById('btnModoSimple');
+  var btnModoMultiple = document.getElementById('btnModoMultiple');
+  var btnCargar = document.getElementById('btn-cargar');
+  var btnReiniciar = document.getElementById('btn-reiniciar');
+  var btnVlc = document.getElementById('btn-vlc');
+  var btnFullscreen = document.getElementById('btn-fullscreen');
+  var btnSalirTeatro = document.getElementById('btnSalirTeatro');
+  var ligaPartido = document.getElementById('liga-partido');
+  var tituloConLogos = document.getElementById('tituloConLogos');
+  var channelList = document.getElementById('channelList');
+  var liveCount = document.getElementById('liveCount');
+  var channelCount = document.getElementById('channelCount');
+  var serverSelector = document.getElementById('serverSelector');
+  var viewGrid = document.getElementById('viewGrid');
+  var emptyState = document.getElementById('emptyState');
 
-  let slotActivo = -1;
-  let slots = [];
-  let modoMultiview = false;
+  var slotActivo = -1;
+  var slots = [];
+  var modoMultiview = false;
 
-  // ====== PARTIDOS DE HOY (SOLO VISUALIZACIÓN) ======
-  const ESPN_LIGAS_HOY = [
-    {slug:'eng.1', nombre:'Premier League (Inglaterra)', deporte:'soccer'},
-    {slug:'esp.1', nombre:'La Liga (España)', deporte:'soccer'},
-    {slug:'esp.2', nombre:'Segunda División (España)', deporte:'soccer'},
-    {slug:'ger.1', nombre:'Bundesliga (Alemania)', deporte:'soccer'},
-    {slug:'ita.1', nombre:'Serie A (Italia)', deporte:'soccer'},
-    {slug:'fra.1', nombre:'Ligue 1 (Francia)', deporte:'soccer'},
-    {slug:'por.1', nombre:'Primeira Liga (Portugal)', deporte:'soccer'},
-    {slug:'ned.1', nombre:'Eredivisie (Países Bajos)', deporte:'soccer'},
-    {slug:'eng.2', nombre:'Championship (Inglaterra)', deporte:'soccer'},
-    {slug:'tur.1', nombre:'Super Lig (Turquía)', deporte:'soccer'},
-    {slug:'mex.1', nombre:'Liga MX (México)', deporte:'soccer'},
-    {slug:'mex.2', nombre:'Liga de Expansión MX (México)', deporte:'soccer'},
-    {slug:'usa.1', nombre:'MLS (Estados Unidos)', deporte:'soccer'},
-    {slug:'arg.1', nombre:'Liga Profesional de Fútbol (Argentina)', deporte:'soccer'},
-    {slug:'col.1', nombre:'Liga BetPlay (Colombia)', deporte:'soccer'},
-    {slug:'chi.1', nombre:'Primera División (Chile)', deporte:'soccer'},
-    {slug:'ecu.1', nombre:'LigaPro (Ecuador)', deporte:'soccer'},
-    {slug:'per.1', nombre:'Liga 1 (Perú)', deporte:'soccer'},
-    {slug:'bra.1', nombre:'Brasileirao (Brasil)', deporte:'soccer'},
-    {slug:'uru.1', nombre:'Primera División (Uruguay)', deporte:'soccer'},
-    {slug:'par.1', nombre:'Copa de Primera (Paraguay)', deporte:'soccer'},
-    {slug:'uefa.champions', nombre:'UEFA Champions League', deporte:'soccer'},
-    {slug:'afc.champions', nombre:'AFC Champions League Elite', deporte:'soccer'},
-    {slug:'conmebol.libertadores', nombre:'Copa Libertadores', deporte:'soccer'},
-    {slug:'concacaf.champions', nombre:'Concacaf Champions Cup', deporte:'soccer'},
-    {slug:'nfl', nombre:'NFL (Estados Unidos)', deporte:'football'},
-    {slug:'nba', nombre:'NBA (Estados Unidos)', deporte:'basketball'},
-    {slug:'mlb', nombre:'MLB (Estados Unidos)', deporte:'baseball'},
-    {slug:'nhl', nombre:'NHL (Estados Unidos)', deporte:'hockey'}
-  ];
-
-  let hoyCache = null;
-  let hoyCacheFecha = null;
-
-  function formatearHoraHoy(iso){
-    if(!iso) return 'Hora por confirmar';
-    try{
-      const d = new Date(iso);
-      const ahora = new Date();
-      const diffMin = Math.round((d - ahora) / 60000);
-      let rel = '';
-      if(diffMin < -120) rel = 'finalizado';
-      else if(diffMin < 0) rel = 'en curso';
-      else if(diffMin < 60) rel = 'en ' + diffMin + ' min';
-      else rel = 'en ' + Math.round(diffMin/60) + ' h';
-      return d.toLocaleString('es-MX', {hour:'2-digit', minute:'2-digit'}) + ' · ' + rel;
-    }catch(e){ return iso; }
-  }
-
-  function abrirModalHoy(){
-    document.getElementById('hoyModalOverlay').classList.add('visible');
-    const hoyStr = new Date().toDateString();
-    if(hoyCache && hoyCacheFecha === hoyStr){
-      renderizarHoy(hoyCache);
-    } else {
-      cargarPartidosDeHoy();
-    }
-  }
-  function cerrarModalHoy(){
-    document.getElementById('hoyModalOverlay').classList.remove('visible');
-  }
-
-  function renderizarHoy(partidos){
-    const list = document.getElementById('hoyModalList');
-    const count = document.getElementById('hoyModalCount');
-    count.textContent = partidos.length;
-
-    if(partidos.length === 0){
-      list.innerHTML = '<div class="hoy-empty"><i class="fas fa-calendar-times"></i><span>No hay partidos programados para hoy.</span></div>';
-      return;
-    }
-
-    list.innerHTML = '';
-    partidos.forEach(function(p){
-      const item = document.createElement('div');
-      item.className = 'hoy-item';
-      const badge = p.estado === 'vivo'
-        ? '<span class="hoy-badge vivo">EN VIVO</span>'
-        : '<span class="hoy-badge prog">PROGRAMADO</span>';
-      item.innerHTML =
-        '<div class="hoy-info">'+
-          '<div class="hoy-equipos">'+p.equipo1+' vs '+p.equipo2+'</div>'+
-          '<div class="hoy-liga">🏆 '+p.liga+'</div>'+
-          '<div class="hoy-fecha"><i class="fas fa-clock"></i> '+formatearHoraHoy(p.fecha)+'</div>'+
-        '</div>'+
-        badge;
-      list.appendChild(item);
-    });
-  }
-
-  async function cargarPartidosDeHoy(){
-    const list = document.getElementById('hoyModalList');
-    const count = document.getElementById('hoyModalCount');
-    list.innerHTML = '<div class="hoy-loading"><div class="ring"></div><span>Consultando '+ESPN_LIGAS_HOY.length+' ligas...</span></div>';
-    count.textContent = '...';
-
-    try{
-      const hoyStr = new Date().toDateString();
-      const encontrados = [];
-
-      const promesas = ESPN_LIGAS_HOY.map(async function(liga){
-        try{
-          const r = await fetch('https://site.api.espn.com/apis/site/v2/sports/'+(liga.deporte||'soccer')+'/'+liga.slug+'/scoreboard');
-          if(!r.ok) return [];
-          const d = await r.json();
-          const evs = (d && d.events) ? d.events : [];
-          const arr = [];
-          evs.forEach(function(ev){
-            const comp = ev.competitions && ev.competitions[0]; if(!comp) return;
-            const est = comp.status && comp.status.type ? comp.status.type.state : '';
-            const fechaEvento = ev.date ? new Date(ev.date).getTime() : 0;
-            if(!fechaEvento) return;
-
-            const esHoy = new Date(fechaEvento).toDateString() === hoyStr;
-            const esVivo = (est === 'in');
-            const esProgHoy = (est === 'pre' && esHoy);
-
-            if(!esVivo && !esProgHoy) return;
-
-            const h = comp.competitors && comp.competitors.find(function(c){return c.homeAway==='home';});
-            const a = comp.competitors && comp.competitors.find(function(c){return c.homeAway==='away';});
-            if(!h || !a) return;
-            const e1 = (h.team && (h.team.displayName||h.team.name))||'';
-            const e2 = (a.team && (a.team.displayName||a.team.name))||'';
-            if(!e1 || !e2) return;
-
-            arr.push({
-              equipo1: e1.toUpperCase(),
-              equipo2: e2.toUpperCase(),
-              liga: liga.nombre,
-              fecha: ev.date || '',
-              estado: esVivo ? 'vivo' : 'programado'
-            });
-          });
-          return arr;
-        }catch(e){ return []; }
-      });
-
-      const res = await Promise.all(promesas);
-      res.forEach(function(l){ l.forEach(function(p){ encontrados.push(p); }); });
-
-      encontrados.sort(function(a,b){
-        if(a.estado !== b.estado) return a.estado === 'vivo' ? -1 : 1;
-        return new Date(a.fecha) - new Date(b.fecha);
-      });
-
-      hoyCache = encontrados;
-      hoyCacheFecha = hoyStr;
-      renderizarHoy(encontrados);
-    }catch(err){
-      list.innerHTML = '<div class="hoy-empty" style="color:#ff6b6b;"><i class="fas fa-exclamation-triangle"></i><span>Error al consultar: '+err.message+'</span></div>';
-      count.textContent = '0';
-    }
-  }
-
-  document.getElementById('btnVerPartidosHoy').addEventListener('click', abrirModalHoy);
-  document.getElementById('btnHoyHeader').addEventListener('click', abrirModalHoy);
-  document.getElementById('hoyModalClose').addEventListener('click', cerrarModalHoy);
-  document.getElementById('hoyModalOverlay').addEventListener('click', function(e){
-    if(e.target === this) cerrarModalHoy();
-  });
-
-  // ====== AUDIO ======
-  let audioDesbloqueado = false;
+  var audioDesbloqueado = false;
   function desbloquearAudio(){
     if(audioDesbloqueado) return;
     audioDesbloqueado = true;
@@ -853,10 +621,10 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
 
   function abrirEnReproductorExterno(url, partido){
     if(!url) return;
-    const titulo = encodeURIComponent((partido&&partido.nombre?partido.nombre:'Partido')+(partido&&partido.liga?' · '+partido.liga:''));
-    const ua = navigator.userAgent.toLowerCase();
+    var titulo = encodeURIComponent((partido&&partido.nombre?partido.nombre:'Partido')+(partido&&partido.liga?' · '+partido.liga:''));
+    var ua = navigator.userAgent.toLowerCase();
     function lanzar(esq){
-      const a = document.createElement('a'); a.href=esq; a.style.display='none'; a.rel='noopener noreferrer';
+      var a = document.createElement('a'); a.href=esq; a.style.display='none'; a.rel='noopener noreferrer';
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
     }
     if(/android/.test(ua)){
@@ -882,30 +650,30 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   }
 
   function crearSlotDOM(i){
-    const slot = document.createElement('div');
+    var slot = document.createElement('div');
     slot.className = 'view-slot' + (i===slotActivo?' active-slot':'');
     slot.dataset.index = i;
-    const video = document.createElement('video');
+    var video = document.createElement('video');
     video.className='slot-video'; video.controls=true; video.playsInline=true; video.muted=false; video.volume=1; video.autoplay=true;
     slot.appendChild(video);
-    const empty = document.createElement('div');
+    var empty = document.createElement('div');
     empty.className='slot-empty';
     empty.innerHTML='<i class="fas fa-tv"></i><span>Selecciona un partido</span>';
     slot.appendChild(empty);
-    const loading = document.createElement('div');
+    var loading = document.createElement('div');
     loading.className='slot-loading';
     loading.innerHTML='<div class="loading-ring"></div><div class="loading-text">Cargando...</div><div class="loading-sub">Conectando al servidor</div>';
     slot.appendChild(loading);
-    const overlay = document.createElement('div');
+    var overlay = document.createElement('div');
     overlay.className='slot-overlay';
     overlay.innerHTML='<i class="fas fa-broadcast-tower"></i><div class="overlay-title">Transmisión finalizada</div><div class="overlay-sub">Selecciona otro canal</div>';
     slot.appendChild(overlay);
-    const closeBtn = document.createElement('button');
+    var closeBtn = document.createElement('button');
     closeBtn.className='slot-close'; closeBtn.title='Cerrar esta transmisión'; closeBtn.innerHTML='<i class="fas fa-times"></i>';
     closeBtn.addEventListener('click', function(e){ e.stopPropagation(); cerrarSlotPorElemento(slot); });
     slot.appendChild(closeBtn);
     slot.addEventListener('click', function(){
-      const idx = parseInt(slot.dataset.index);
+      var idx = parseInt(slot.dataset.index);
       if(idx>=0 && idx<slots.length){
         slotActivo=idx;
         actualizarSlotActivo();
@@ -919,8 +687,8 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
 
   function mostrarLoading(s, texto, sub){
     if(!s) return;
-    const t = s.loading.querySelector('.loading-text');
-    const sb = s.loading.querySelector('.loading-sub');
+    var t = s.loading.querySelector('.loading-text');
+    var sb = s.loading.querySelector('.loading-sub');
     if(t) t.textContent = texto || 'Cargando...';
     if(sb) sb.textContent = sub || 'Conectando al servidor';
     s.loading.classList.add('visible');
@@ -940,7 +708,7 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   function reconstruirGrillaDesdeEstado(estados, nuevoSlotActivo){
     slots.forEach(function(s){ limpiarSlot(s); });
     slots = []; viewGrid.innerHTML = '';
-    const cantidad = estados.length;
+    var cantidad = estados.length;
     if(cantidad===0){
       viewGrid.className='view-grid empty';
       emptyState.classList.add('visible');
@@ -951,16 +719,16 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
     }
     emptyState.classList.remove('visible');
     viewGrid.className = 'view-grid v'+cantidad;
-    for(let i=0;i<cantidad;i++){ const s = crearSlotDOM(i); slots.push(s); }
+    for(var i=0;i<cantidad;i++){ var s = crearSlotDOM(i); slots.push(s); }
     slotActivo = Math.max(0, Math.min(nuevoSlotActivo, cantidad-1));
-    for(let i=0;i<cantidad;i++){
-      const est = estados[i];
+    for(var j=0;j<cantidad;j++){
+      var est = estados[j];
       if(est && est.partido){
-        const s = slots[i];
-        s.partido = est.partido; s.urlIndex = est.urlIndex||0;
-        s.empty.style.display='none';
-        const url = est.partido.urls[s.urlIndex] || est.partido.urls[0];
-        cargarStreamEnSlot(s, url);
+        var ss = slots[j];
+        ss.partido = est.partido; ss.urlIndex = est.urlIndex||0;
+        ss.empty.style.display='none';
+        var url = est.partido.urls[ss.urlIndex] || est.partido.urls[0];
+        cargarStreamEnSlot(ss, url);
       }
     }
     actualizarSlotActivo();
@@ -971,7 +739,7 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   }
 
   function cerrarSlotPorElemento(slotEl){
-    const idx = slots.findIndex(function(s){ return s.el === slotEl; });
+    var idx = slots.findIndex(function(s){ return s.el === slotEl; });
     if(idx===-1) return;
     cerrarSlot(idx);
   }
@@ -979,20 +747,20 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   function cerrarSlot(indice){
     if(indice<0 || indice>=slots.length) return;
     if(!modoMultiview && slots.length===1){
-      const s = slots[0];
+      var s = slots[0];
       s.partido=null; s.urlIndex=0; limpiarSlot(s);
       s.empty.style.display='flex';
       actualizarSlotActivo(); renderizarSidebar(); actualizarBotonesEstado();
       actualizarVisibilidadBotonFullscreen();
       return;
     }
-    const estados = [];
-    for(let i=0;i<slots.length;i++){
+    var estados = [];
+    for(var i=0;i<slots.length;i++){
       if(i===indice) continue;
-      const s = slots[i];
-      estados.push(s.partido?{partido:s.partido, urlIndex:s.urlIndex}:null);
+      var ss = slots[i];
+      estados.push(ss.partido?{partido:ss.partido, urlIndex:ss.urlIndex}:null);
     }
-    let nuevoActivo = slotActivo;
+    var nuevoActivo = slotActivo;
     if(indice<slotActivo) nuevoActivo = slotActivo-1;
     if(nuevoActivo>=estados.length) nuevoActivo = estados.length-1;
     if(nuevoActivo<0) nuevoActivo = 0;
@@ -1001,24 +769,68 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
 
   function actualizarSlotActivo(){
     slots.forEach(function(s,i){ s.el.classList.toggle('active-slot', i===slotActivo); });
-    const s = (slotActivo>=0)?slots[slotActivo]:null;
+    var s = (slotActivo>=0)?slots[slotActivo]:null;
     if(s && s.partido){ actualizarInfoPartido(s.partido); renderizarServidores(s.partido); }
-    else { nombrePartido.textContent='No hay transmisiones activas'; ligaPartido.textContent=''; serverSelector.classList.remove('visible'); }
+    else {
+      tituloConLogos.innerHTML = '<div class="fila-texto" style="color:#6b7280;font-size:18px;">No hay transmisiones activas</div>';
+      ligaPartido.textContent='';
+      serverSelector.classList.remove('visible');
+    }
   }
   function actualizarBotonesEstado(){
-    const ok = (slotActivo>=0 && slots[slotActivo] && slots[slotActivo].partido);
+    var ok = (slotActivo>=0 && slots[slotActivo] && slots[slotActivo].partido);
     btnCargar.disabled = !ok; btnReiniciar.disabled = !ok; btnVlc.disabled = !ok;
   }
+
   function actualizarInfoPartido(partido){
-    const p = partido.nombre.split(' vs ');
-    if(p.length===2) nombrePartido.innerHTML = '<span>'+p[0].trim()+'</span> vs <span>'+p[1].trim()+'</span>';
-    else nombrePartido.textContent = partido.nombre;
+    var p = partido.nombre.split(' vs ');
+    var e1 = p[0] ? p[0].trim() : 'Local';
+    var e2 = p[1] ? p[1].trim() : 'Visitante';
+    var img1 = partido.logo1 || partido.bandera1 || '';
+    var img2 = partido.logo2 || partido.bandera2 || '';
+
+    tituloConLogos.innerHTML = '';
+
+    var filaTexto = document.createElement('div');
+    filaTexto.className = 'fila-texto';
+    filaTexto.innerHTML = '<span>'+e1+'</span> vs <span>'+e2+'</span>';
+    tituloConLogos.appendChild(filaTexto);
+
+    var filaEscudos = document.createElement('div');
+    filaEscudos.className = 'fila-escudos';
+
+    if(img1){
+      var i1 = document.createElement('img');
+      i1.src = img1; i1.alt = e1;
+      i1.onerror = function(){ this.style.display='none'; };
+      filaEscudos.appendChild(i1);
+    } else {
+      var ph1 = document.createElement('div');
+      ph1.className = 'escudo-placeholder';
+      ph1.innerHTML = '<i class="fas fa-shield-halved"></i>';
+      filaEscudos.appendChild(ph1);
+    }
+
+    if(img2){
+      var i2 = document.createElement('img');
+      i2.src = img2; i2.alt = e2;
+      i2.onerror = function(){ this.style.display='none'; };
+      filaEscudos.appendChild(i2);
+    } else {
+      var ph2 = document.createElement('div');
+      ph2.className = 'escudo-placeholder';
+      ph2.innerHTML = '<i class="fas fa-shield-halved"></i>';
+      filaEscudos.appendChild(ph2);
+    }
+
+    tituloConLogos.appendChild(filaEscudos);
+
     ligaPartido.textContent = partido.liga || '🏆 En Vivo';
   }
 
   function intentarReproducir(s){
     if(!s || !s.video) return;
-    const idx = slots.indexOf(s);
+    var idx = slots.indexOf(s);
     if(idx === slotActivo){ s.video.muted = false; s.video.volume = 1; }
     else { s.video.muted = true; }
     var p = s.video.play();
@@ -1041,11 +853,11 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
       return;
     }
 
-    const idx = slots.indexOf(s);
+    var idx = slots.indexOf(s);
     if(idx === slotActivo){ s.video.muted = false; s.video.volume = 1; }
     else { s.video.muted = true; }
 
-    let yaReprodujo = false;
+    var yaReprodujo = false;
 
     function alReproducir(){
       yaReprodujo = true;
@@ -1096,7 +908,7 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
       reconstruirGrillaDesdeEstado([{partido:partido, urlIndex:0}], 0);
       return;
     }
-    const existente = slots.findIndex(function(s){ return s.partido && s.partido.id === partido.id; });
+    var existente = slots.findIndex(function(s){ return s.partido && s.partido.id === partido.id; });
     if(existente!==-1){
       slotActivo = existente;
       actualizarSlotActivo();
@@ -1106,28 +918,28 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
       return;
     }
     if(slots.length < MAX_SLOTS){
-      const estados = slots.map(function(s){ return s.partido?{partido:s.partido, urlIndex:s.urlIndex}:null; });
+      var estados = slots.map(function(s){ return s.partido?{partido:s.partido, urlIndex:s.urlIndex}:null; });
       estados.push({partido:partido, urlIndex:0});
       reconstruirGrillaDesdeEstado(estados, estados.length-1);
     } else {
-      let reemplazar = -1;
-      for(let i=0;i<slots.length;i++){ if(i!==slotActivo && slots[i].partido){ reemplazar=i; break; } }
+      var reemplazar = -1;
+      for(var i=0;i<slots.length;i++){ if(i!==slotActivo && slots[i].partido){ reemplazar=i; break; } }
       if(reemplazar===-1) reemplazar = (slotActivo+1)%slots.length;
-      const estados = slots.map(function(s,i){
+      var estados2 = slots.map(function(s,i){
         if(i===reemplazar) return {partido:partido, urlIndex:0};
         return s.partido?{partido:s.partido, urlIndex:s.urlIndex}:null;
       });
-      reconstruirGrillaDesdeEstado(estados, reemplazar);
+      reconstruirGrillaDesdeEstado(estados2, reemplazar);
     }
   }
 
   function renderizarServidores(partido){
-    const s = slots[slotActivo];
-    const indexActivo = s?s.urlIndex:0;
+    var s = slots[slotActivo];
+    var indexActivo = s?s.urlIndex:0;
     serverSelector.innerHTML = '<span class="server-label"><i class="fas fa-server"></i> Servidor:</span>';
     if(partido.urls && partido.urls.length>1){
       partido.urls.forEach(function(_, i){
-        const btn = document.createElement('button');
+        var btn = document.createElement('button');
         btn.className = 'server-btn' + (i===indexActivo?' active':'');
         btn.innerHTML = '<i class="fas fa-circle"></i> Opción '+(i+1);
         btn.addEventListener('click', function(){ seleccionarServidor(i); });
@@ -1138,7 +950,7 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   }
   function seleccionarServidor(index){
     desbloquearAudio();
-    const s = slots[slotActivo];
+    var s = slots[slotActivo];
     if(!s || !s.partido || !s.partido.urls || !s.partido.urls[index]) return;
     s.urlIndex = index;
     s.retryCount = 0;
@@ -1160,18 +972,29 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
     liveCount.textContent = PARTIDOS.length.toString();
     channelCount.textContent = PARTIDOS.length+' partido'+(PARTIDOS.length!==1?'s':'')+' disponible'+(PARTIDOS.length!==1?'s':'');
     PARTIDOS.forEach(function(partido){
-      const item = document.createElement('div');
+      var item = document.createElement('div');
       item.className='channel-item';
-      const slotIdx = slots.findIndex(function(s){ return s.partido && s.partido.id===partido.id; });
-      const visible = slotIdx!==-1;
+      var slotIdx = slots.findIndex(function(s){ return s.partido && s.partido.id===partido.id; });
+      var visible = slotIdx!==-1;
       if(visible) item.classList.add('active');
-      let badge = '';
+
+      var info = document.createElement('div');
+      info.className='ch-info';
+      info.innerHTML = '<div class="ch-name">'+partido.nombre+'</div><div class="ch-meta"><span class="live-badge">EN VIVO</span></div><div class="ch-comp">'+partido.liga+'</div>';
+      item.appendChild(info);
+
       if(visible){
-        const esAct = slotIdx===slotActivo;
-        if(modoMultiview) badge = '<span class="ch-slot-badge'+(esAct?' activo':'')+'">'+(esAct?'ACTIVO':'PANTALLA '+(slotIdx+1))+'</span>';
-        else badge = '<span class="ch-slot-badge activo">VIENDO</span>';
+        var esAct = slotIdx===slotActivo;
+        var badge = document.createElement('span');
+        if(modoMultiview){
+          badge.className = 'ch-slot-badge' + (esAct?' activo':'');
+          badge.textContent = esAct ? 'ACTIVO' : ('PANTALLA '+(slotIdx+1));
+        } else {
+          badge.className = 'ch-slot-badge activo';
+          badge.textContent = 'VIENDO';
+        }
+        item.appendChild(badge);
       }
-      item.innerHTML = '<div class="ch-icon"><i class="fas fa-futbol"></i></div><div class="ch-info"><div class="ch-name">'+partido.nombre+'</div><div class="ch-meta"><span class="live-badge">EN VIVO</span></div><div class="ch-comp">'+partido.liga+'</div></div>'+badge;
       item.addEventListener('click', function(){ alPresionarPartido(partido); });
       channelList.appendChild(item);
     });
@@ -1195,10 +1018,10 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
     if(!modoMultiview) return;
     modoMultiview = false; actualizarBotonesModo();
     showToast('Modo simple: 1 solo canal a la vez');
-    const s = (slotActivo>=0)?slots[slotActivo]:null;
+    var s = (slotActivo>=0)?slots[slotActivo]:null;
     if(s && s.partido) reconstruirGrillaDesdeEstado([{partido:s.partido, urlIndex:s.urlIndex}], 0);
     else {
-      const p = slots.find(function(x){return x.partido;});
+      var p = slots.find(function(x){return x.partido;});
       if(p) reconstruirGrillaDesdeEstado([{partido:p.partido, urlIndex:p.urlIndex}], 0);
       else reconstruirGrillaDesdeEstado([], -1);
     }
@@ -1212,7 +1035,7 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   }
 
   function actualizarVisibilidadBotonFullscreen(){
-    const activos = slots.filter(function(s){ return s.partido; }).length;
+    var activos = slots.filter(function(s){ return s.partido; }).length;
     if(activos > 1){ btnFullscreen.classList.remove('oculto'); }
     else {
       btnFullscreen.classList.add('oculto');
@@ -1225,9 +1048,9 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   }
 
   function salirDeFullscreen(){
-    const estaFull = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+    var estaFull = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
     if(estaFull){
-      const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+      var exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
       if(exit) exit.call(document);
     }
     if(document.body.classList.contains('modo-teatro')){ document.body.classList.remove('modo-teatro'); }
@@ -1240,14 +1063,14 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
   }
 
   function toggleFullscreenGrilla(){
-    const estaFull = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+    var estaFull = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
     if(estaFull){ salirDeFullscreen(); return; }
     if(document.body.classList.contains('modo-teatro')){ salirDeFullscreen(); return; }
 
-    const activos = slots.filter(function(s){ return s.partido; }).length;
+    var activos = slots.filter(function(s){ return s.partido; }).length;
     if(activos <= 1){ alert('La pantalla completa solo está disponible cuando hay 2 o más partidos activos.'); return; }
 
-    const req = viewGrid.requestFullscreen || viewGrid.webkitRequestFullscreen || viewGrid.msRequestFullscreen;
+    var req = viewGrid.requestFullscreen || viewGrid.webkitRequestFullscreen || viewGrid.msRequestFullscreen;
     if(req){
       Promise.resolve(req.call(viewGrid))
         .then(function(){ actualizarBotonFullscreen(); })
@@ -1280,7 +1103,7 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
 
   loginForm.addEventListener('submit', function(e){
     e.preventDefault();
-    const pin = pinInput.value.trim();
+    var pin = pinInput.value.trim();
     if(!pin){ showNotification('Por favor ingresa tu PIN de acceso','error'); pinInput.classList.add('error'); pinInput.focus(); return; }
     if(pin !== PIN_ACCESO){ showNotification('❌ PIN incorrecto. Intenta de nuevo.','error'); pinInput.classList.add('error'); pinInput.value=''; pinInput.focus(); return; }
     loginBtn.disabled = true;
@@ -1296,16 +1119,16 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
 
   btnCargar.addEventListener('click', function(){
     desbloquearAudio();
-    const s = (slotActivo>=0)?slots[slotActivo]:null;
+    var s = (slotActivo>=0)?slots[slotActivo]:null;
     if(s && s.partido){ s.retryCount = 0; cargarStreamEnSlot(s, s.partido.urls[s.urlIndex]||s.partido.urls[0]); }
   });
   btnReiniciar.addEventListener('click', function(){
     desbloquearAudio();
-    const s = (slotActivo>=0)?slots[slotActivo]:null;
+    var s = (slotActivo>=0)?slots[slotActivo]:null;
     if(s && s.partido){ s.retryCount = 0; cargarStreamEnSlot(s, s.partido.urls[s.urlIndex]||s.partido.urls[0]); }
   });
   btnVlc.addEventListener('click', function(){
-    const s = (slotActivo>=0)?slots[slotActivo]:null;
+    var s = (slotActivo>=0)?slots[slotActivo]:null;
     if(s && s.partido) abrirEnReproductorExterno(s.partido.urls[s.urlIndex]||s.partido.urls[0], s.partido);
     else alert('No hay stream cargado.');
   });
@@ -1326,18 +1149,15 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
     if(e.key === 'Escape' && (document.body.classList.contains('modo-teatro') || document.fullscreenElement)){
       salirDeFullscreen();
     }
-    if(e.key === 'Escape' && document.getElementById('hoyModalOverlay').classList.contains('visible')){
-      cerrarModalHoy();
-    }
   });
 
   function checkSession(){
     try{
-      const saved = localStorage.getItem('userSession');
+      var saved = localStorage.getItem('userSession');
       if(saved){
-        const d = JSON.parse(saved);
+        var d = JSON.parse(saved);
         if(d.huella !== HUELLA_CANAL){ localStorage.removeItem('userSession'); return false; }
-        const diff = Math.ceil(Math.abs(new Date() - new Date(d.timestamp)) / 86400000);
+        var diff = Math.ceil(Math.abs(new Date() - new Date(d.timestamp)) / 86400000);
         if(diff<=30 && d.loggedIn){ showApp(); return true; }
         localStorage.removeItem('userSession');
       }
@@ -1345,7 +1165,7 @@ body.modo-teatro .btn-salir-teatro { display: flex; }
     return false;
   }
   if(!checkSession()) showLogin();
-  console.log('✅ Mi Canal Deportivo OK. Atajos: F = pantalla completa | ESC = cerrar modales');
+  console.log('✅ Mi Canal Deportivo OK. Lista sin escudos.');
 })();
 </script>
 </body>
