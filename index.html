@@ -11,7 +11,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;overflow:hidden;}
 body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb;}
-.login-container{width:100%;max-width:400px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;display:none;}
+.login-container{width:100%;max-width:400px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;display:none;padding:16px;}
 .login-container.visible{display:block;}
 .login-card{background:#111827;border-radius:16px;padding:40px 32px 32px;border:1px solid rgba(0,229,160,0.12);box-shadow:0 0 80px rgba(0,229,160,0.06);}
 .login-header{text-align:center;margin-bottom:30px;}
@@ -168,7 +168,7 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .btn-fullscreen{background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;}
 .btn-fullscreen:hover:not(:disabled){transform:scale(1.03);box-shadow:0 4px 18px rgba(139,92,246,0.4);}
 .btn-fullscreen.oculto{display:none;}
-.toast-multiview{position:fixed;top:84px;left:50%;transform:translateX(-50%) translateY(-20px);background:linear-gradient(135deg,rgba(0,229,160,0.95),rgba(0,180,130,0.95));color:#0a0e17;padding:15px 28px;border-radius:14px;font-size:14px;font-weight:800;z-index:9999;display:flex;align-items:center;gap:12px;opacity:0;pointer-events:none;transition:all 0.4s ease;box-shadow:0 8px 32px rgba(0,229,160,0.3);}
+.toast-multiview{position:fixed;top:84px;left:50%;transform:translateX(-50%) translateY(-20px);background:linear-gradient(135deg,rgba(0,229,160,0.95),rgba(0,180,130,0.95));color:#0a0e17;padding:15px 28px;border-radius:14px;font-size:14px;font-weight:800;z-index:9999;display:flex;align-items:center;gap:12px;opacity:0;pointer-events:none;transition:all 0.4s ease;box-shadow:0 8px 32px rgba(0,229,160,0.3);max-width:calc(100% - 32px);}
 .toast-multiview.visible{opacity:1;transform:translateX(-50%) translateY(0);}
 @keyframes spin{to{transform:rotate(360deg);}}
 .view-grid:fullscreen,.view-grid:-webkit-full-screen{width:100vw;height:100vh;max-height:none;padding:0;margin:0;background:#000;gap:2px;border-radius:0;flex:none;}
@@ -194,97 +194,133 @@ body.modo-teatro{overflow:hidden;}
 body.modo-teatro .btn-salir-teatro{display:flex;}
 .btn-salir-teatro:hover{background:var(--neon);transform:scale(1.05);}
 
-/* ===== MEDIA QUERIES ===== */
+/* ===== RESPONSIVE GLOBAL ===== */
+
+/* TABLET / CELULAR HORIZONTAL */
 @media(max-width:1100px){
   .sidebar{width:380px;}
   .channel-list{grid-template-columns:repeat(auto-fill, minmax(170px, 1fr));}
 }
+
 @media(max-width:900px) and (orientation:portrait){
   .main-layout{flex-direction:column;height:100%;overflow-y:auto;}
-  .player-column{order:1;padding:16px;flex:0 0 auto;overflow:visible;height:auto;}
-  .main-container{max-height:none;overflow:visible;padding:20px;}
-  .sidebar{order:2;width:100%;max-height:none;flex:0 0 auto;border-right:none;border-top:1px solid rgba(0,229,160,0.12);margin-bottom:20px;}
+  .player-column{order:1;padding:14px;flex:0 0 auto;overflow:visible;height:auto;}
+  .main-container{max-height:none;overflow:visible;padding:18px;}
+  .sidebar{order:2;width:100%;max-height:none;flex:0 0 auto;border-right:none;border-top:1px solid rgba(0,229,160,0.12);margin-bottom:16px;}
   .channel-list{grid-template-columns:repeat(2, 1fr);gap:10px;max-height:none;padding:12px;}
-  .channel-item{min-height:104px;padding:12px 8px;}
+  .channel-item{min-height:100px;padding:12px 8px;}
   .channel-item .ch-name{font-size:11.5px;}
   .channel-item .ch-comp{font-size:9px;}
-  .mode-buttons{gap:8px;}
-  .mode-btn{min-width:calc(33% - 6px);padding:9px 8px;font-size:11px;}
+  .mode-buttons{gap:6px;margin-bottom:10px;}
+  .mode-btn{min-width:calc(33% - 4px);padding:8px 6px;font-size:10px;gap:4px;}
+  .mode-btn i{font-size:11px;}
 }
+
 @media(max-width:900px) and (orientation:landscape){
   .main-layout{flex-direction:row;height:100vh;overflow:hidden;}
-  .sidebar{width:260px;height:100vh;order:1;flex-shrink:0;}
+  .sidebar{width:280px;height:100vh;order:1;flex-shrink:0;}
   .sidebar-header{padding:12px 14px;}
-  .channel-list{grid-template-columns:1fr;gap:10px;padding:10px;}
-  .channel-item{min-height:78px;padding:12px 14px;}
-  .channel-item .ch-name{font-size:12px;}
-  .channel-item .ch-comp{font-size:9px;}
+  .sidebar-header h2{font-size:12px;}
+  .sidebar-header p{font-size:10px;}
+  .channel-list{grid-template-columns:1fr;gap:8px;padding:10px;}
+  .channel-item{min-height:70px;padding:10px 12px;}
+  .channel-item .ch-name{font-size:11px;}
+  .channel-item .ch-comp{font-size:8.5px;}
   .player-column{order:2;padding:10px;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .main-container{max-width:100%;padding:14px;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden;}
   .header-deportes{margin-bottom:10px;}
   .titulo{font-size:17px;}
   .estado-transmitiendo{font-size:11px;padding:6px 14px;}
-  .mode-buttons{gap:6px;margin-bottom:10px;}
-  .mode-btn{padding:6px 8px;font-size:9.5px;min-width:90px;gap:4px;}
+  .mode-buttons{gap:6px;margin-bottom:8px;}
+  .mode-btn{padding:6px 8px;font-size:9px;min-width:80px;gap:4px;border-radius:8px;}
   .mode-btn i{font-size:10px;}
-  .info-partido h2{font-size:15px;}
+  .info-partido{margin-top:10px;}
+  .info-partido .titulo-partido-con-logos .fila-texto{font-size:15px;}
+  .info-partido .titulo-partido-con-logos .fila-escudos{gap:40px;}
+  .info-partido .titulo-partido-con-logos .fila-escudos img,
+  .info-partido .titulo-partido-con-logos .fila-escudos .escudo-placeholder{width:40px;height:40px;font-size:18px;}
   .info-partido .liga{font-size:10px;}
-  .controles button{padding:7px 12px;font-size:11px;gap:5px;}
+  .controles{margin-top:10px;gap:6px;}
+  .controles button{padding:7px 6px;font-size:10px;gap:4px;border-radius:8px;}
+  .controles button i{font-size:10px;}
 }
+
+/* ===== CELULAR PEQUEÑO ===== */
 @media(max-width:600px){
   .my-header{height:56px;padding:0 12px;}
+  .brand{gap:10px;}
   .brand .logo{width:36px;height:36px;font-size:17px;border-radius:10px;}
   .brand .name{font-size:15px;}
   .brand .sub{font-size:9px;letter-spacing:2px;}
   .estado{display:none;}
-  .btn-header{padding:7px 12px;font-size:11px;gap:6px;border-radius:10px;}
-  .header-actions{gap:8px;}
-  .main-container{padding:16px;border-radius:14px;}
-  .titulo{font-size:20px;}
-  .estado-transmitiendo{font-size:11px;padding:6px 12px;gap:6px;}
-  .header-deportes{margin-bottom:14px;gap:8px;}
+  .header-actions{gap:6px;}
+  .btn-header{padding:7px 10px;font-size:10.5px;gap:5px;border-radius:9px;}
+  .main-container{padding:14px;border-radius:14px;}
+  .header-deportes{margin-bottom:10px;gap:8px;}
+  .titulo{font-size:19px;}
+  .estado-transmitiendo{font-size:10.5px;padding:5px 11px;gap:5px;}
 
-  /* ===== BOTONES DE MODO MUY PEQUEÑOS ===== */
-  .mode-buttons{gap:5px;margin-bottom:8px;}
+  /* Modos ultra compactos y justificados */
+  .mode-buttons{gap:5px;margin-bottom:10px;}
   .mode-btn{
     min-width:0;
-    flex:1 1 auto;
-    padding:5px 8px;
+    flex:1 1 0;
+    padding:6px 4px;
     font-size:9px;
     gap:4px;
-    border-radius:7px;
-    letter-spacing:0.2px;
+    border-radius:8px;
+    letter-spacing:0.1px;
     font-weight:800;
+    justify-content:center;
   }
-  .mode-btn i{font-size:9px;}
-  .mode-btn.info{padding:5px 8px;font-size:9px;gap:4px;}
+  .mode-btn i{font-size:10px;}
+  .mode-btn.info{padding:6px 4px;font-size:9px;gap:4px;}
 
-  .info-partido{margin-top:14px;}
+  .info-partido{margin-top:12px;}
   .info-partido .titulo-partido-con-logos{gap:6px;}
-  .info-partido .titulo-partido-con-logos .fila-texto{font-size:15px;}
-  .info-partido .titulo-partido-con-logos .fila-escudos{gap:40px;margin-top:2px;}
+  .info-partido .titulo-partido-con-logos .fila-texto{font-size:14px;}
+  .info-partido .titulo-partido-con-logos .fila-escudos{gap:36px;margin-top:2px;}
   .info-partido .titulo-partido-con-logos .fila-escudos img,
-  .info-partido .titulo-partido-con-logos .fila-escudos .escudo-placeholder{width:40px;height:40px;font-size:18px;}
-  .info-partido .liga{font-size:10px;letter-spacing:1.2px;margin-top:6px;}
+  .info-partido .titulo-partido-con-logos .fila-escudos .escudo-placeholder{width:38px;height:38px;font-size:17px;}
+  .info-partido .liga{font-size:9.5px;letter-spacing:1px;margin-top:5px;}
 
-  .server-selector{margin-top:12px;padding:10px;gap:8px;border-radius:10px;}
-  .server-selector .server-label{font-size:10px;gap:5px;letter-spacing:1px;}
-  .server-btn{padding:6px 14px;font-size:11px;gap:6px;border-radius:8px;}
+  .server-selector{margin-top:10px;padding:9px;gap:6px;border-radius:10px;}
+  .server-selector .server-label{font-size:9.5px;gap:5px;letter-spacing:0.8px;}
+  .server-btn{padding:6px 12px;font-size:10.5px;gap:5px;border-radius:8px;}
 
-  .controles{margin-top:12px;gap:6px;}
-  .controles button{padding:8px 6px;font-size:10px;gap:4px;border-radius:8px;letter-spacing:0.2px;}
+  .controles{margin-top:10px;gap:5px;}
+  .controles button{padding:8px 4px;font-size:9.5px;gap:4px;border-radius:8px;letter-spacing:0.1px;flex:1 1 0;min-width:0;}
   .controles button i{font-size:10px;}
 
   .channel-list{grid-template-columns:repeat(2, 1fr);gap:8px;padding:10px;}
-  .channel-item{min-height:92px;padding:10px 6px;border-radius:11px;}
+  .channel-item{min-height:90px;padding:10px 6px;border-radius:11px;}
   .channel-item .ch-info{gap:4px;padding:0 2px;}
-  .channel-item .ch-name{font-size:11px;line-height:1.3;}
-  .channel-item .ch-meta .live-badge{font-size:9px;letter-spacing:0.5px;}
-  .channel-item .ch-comp{font-size:8.5px;letter-spacing:0.6px;}
-  .channel-item .ch-slot-badge{font-size:7.5px;padding:2px 6px;top:6px;right:6px;}
+  .channel-item .ch-name{font-size:10.5px;line-height:1.3;}
+  .channel-item .ch-meta .live-badge{font-size:9px;letter-spacing:0.4px;}
+  .channel-item .ch-comp{font-size:8px;letter-spacing:0.4px;}
+  .channel-item .ch-slot-badge{font-size:7px;padding:2px 6px;top:6px;right:6px;}
 
-  .toast-multiview{padding:11px 20px;font-size:12px;gap:8px;border-radius:10px;top:70px;}
-  .btn-salir-teatro{padding:9px 14px;font-size:11px;gap:6px;border-radius:10px;}
+  .toast-multiview{padding:10px 16px;font-size:11px;gap:6px;border-radius:10px;top:64px;}
+  .btn-salir-teatro{padding:8px 12px;font-size:10.5px;gap:5px;border-radius:9px;top:12px;right:12px;}
+
+  .login-card{padding:26px 20px 22px;border-radius:14px;}
+  .login-header{margin-bottom:20px;}
+  .login-header .icon-wrap{width:56px;height:56px;font-size:24px;border-radius:14px;}
+  .login-header h1{font-size:1.25rem;}
+  .login-header p{font-size:0.8rem;}
+  .form-input{padding:12px 14px;font-size:0.9rem;border-radius:10px;}
+  .login-btn{padding:13px;font-size:0.9rem;border-radius:10px;gap:8px;}
+  .login-footer{margin-top:16px;padding-top:14px;font-size:0.75rem;}
+}
+
+/* ===== CELULAR MUY PEQUEÑO (≤380px) ===== */
+@media(max-width:380px){
+  .mode-btn{font-size:8.5px;padding:5px 3px;gap:3px;}
+  .mode-btn i{font-size:9px;}
+  .controles button{font-size:9px;padding:7px 3px;gap:3px;}
+  .controles button i{font-size:9px;}
+  .channel-item .ch-name{font-size:10px;}
+  .channel-item .ch-comp{font-size:7.5px;}
 }
 </style>
 </head>
@@ -346,8 +382,8 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
         </div>
         <div class="mode-buttons">
           <button class="mode-btn activo" id="btnModoSimple"><i class="fas fa-tv"></i> 1 partido</button>
-          <button class="mode-btn" id="btnModoMultiple"><i class="fas fa-layer-group"></i> Hasta 4 partidos</button>
-          <div class="mode-btn info" id="btnInfoCerrar"><i class="fas fa-times-circle"></i> Cerrar con ✕</div>
+          <button class="mode-btn" id="btnModoMultiple"><i class="fas fa-layer-group"></i> Hasta 4</button>
+          <div class="mode-btn info" id="btnInfoCerrar"><i class="fas fa-times-circle"></i> Cerrar ✕</div>
         </div>
         <div class="view-grid v1" id="viewGrid"></div>
         <div class="view-grid-empty-state" id="emptyState">
@@ -361,10 +397,10 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
         </div>
         <div class="server-selector" id="serverSelector"><span class="server-label"><i class="fas fa-server"></i> Servidor:</span></div>
         <div class="controles">
-          <button class="btn-neon" id="btn-cargar"><i class="fas fa-play"></i> Cargar Stream</button>
+          <button class="btn-neon" id="btn-cargar"><i class="fas fa-play"></i> Cargar</button>
           <button class="btn-gris" id="btn-reiniciar"><i class="fas fa-sync-alt"></i> Reiniciar</button>
-          <button class="btn-fullscreen oculto" id="btn-fullscreen"><i class="fas fa-expand"></i> Pantalla completa</button>
-          <button class="btn-vlc" id="btn-vlc"><i class="fas fa-external-link-alt"></i> Abrir en VLC</button>
+          <button class="btn-fullscreen oculto" id="btn-fullscreen"><i class="fas fa-expand"></i> Pantalla</button>
+          <button class="btn-vlc" id="btn-vlc"><i class="fas fa-external-link-alt"></i> VLC</button>
         </div>
       </div>
     </div>
@@ -652,7 +688,7 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
     var s = (slotActivo>=0)?slots[slotActivo]:null;
     if(s && s.partido){ actualizarInfoPartido(s.partido); renderizarServidores(s.partido); }
     else {
-      tituloConLogos.innerHTML = '<div class="fila-texto" style="color:#6b7280;font-size:18px;">No hay transmisiones activas</div>';
+      tituloConLogos.innerHTML = '<div class="fila-texto" style="color:#6b7280;font-size:16px;">No hay transmisiones activas</div>';
       ligaPartido.textContent='';
       serverSelector.classList.remove('visible');
     }
@@ -868,7 +904,7 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
         var badge = document.createElement('span');
         if(modoMultiview){
           badge.className = 'ch-slot-badge' + (esAct?' activo':'');
-          badge.textContent = esAct ? 'ACTIVO' : ('PANTALLA '+(slotIdx+1));
+          badge.textContent = esAct ? 'ACTIVO' : ('P'+(slotIdx+1));
         } else {
           badge.className = 'ch-slot-badge activo';
           badge.textContent = 'VIENDO';
@@ -909,7 +945,7 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
   function activarModoMultiple(){
     if(modoMultiview) return;
     modoMultiview = true; actualizarBotonesModo();
-    showToast('Vista múltiple activada: hasta 4 canales a la vez');
+    showToast('Vista múltiple activada: hasta 4 canales');
     aplicarAudioAlSlotActivo();
     renderizarSidebar();
   }
@@ -966,8 +1002,8 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
   }
 
   function actualizarBotonFullscreen(){
-    if(estaEnFullscreen()){ btnFullscreen.innerHTML = '<i class="fas fa-compress"></i> Salir de pantalla completa'; }
-    else { btnFullscreen.innerHTML = '<i class="fas fa-expand"></i> Pantalla completa'; }
+    if(estaEnFullscreen()){ btnFullscreen.innerHTML = '<i class="fas fa-compress"></i> Salir'; }
+    else { btnFullscreen.innerHTML = '<i class="fas fa-expand"></i> Pantalla'; }
   }
 
   ['fullscreenchange','webkitfullscreenchange','msfullscreenchange'].forEach(function(ev){
@@ -1045,7 +1081,7 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
     return false;
   }
   if(!checkSession()) showLogin();
-  console.log('✅ Mi Canal Deportivo OK. Botones de modo ultra compactos.');
+  console.log('✅ Mi Canal Deportivo OK. Diseño justificado responsivo.');
 })();
 </script>
 </body>
