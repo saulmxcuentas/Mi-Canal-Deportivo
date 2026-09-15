@@ -99,14 +99,30 @@ body{font-family:'Segoe UI','Roboto',sans-serif;background:#0a0e17;color:#f9fafb
 .titulo{color:#fff;font-size:28px;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;}
 .titulo span{background:linear-gradient(135deg,var(--neon),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .estado-transmitiendo{display:flex;align-items:center;gap:10px;color:var(--neon);font-size:15px;font-weight:700;background:rgba(0,229,160,0.08);padding:9px 20px;border-radius:50px;border:1px solid rgba(0,229,160,0.15);white-space:nowrap;}
-.mode-buttons{margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;}
-.mode-btn{flex:1;min-width:90px;padding:7px 10px;background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.2);border-radius:10px;color:var(--neon);font-family:inherit;font-weight:700;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.25s ease;white-space:nowrap;}
-.mode-btn i{font-size:13px;}
-.mode-btn:hover{background:rgba(0,229,160,0.15);border-color:var(--neon);transform:translateY(-1px);}
-.mode-btn.activo{background:var(--neon);color:#0a0e17;border-color:var(--neon);box-shadow:0 0 18px rgba(0,229,160,0.3);}
-.mode-btn.activo i{color:#0a0e17;}
-.mode-btn.info{cursor:default;pointer-events:none;background:rgba(0,212,255,0.06);border-color:rgba(0,212,255,0.2);color:var(--cyan);font-weight:700;}
-.mode-btn.info i{color:var(--cyan);}
+.mode-buttons{margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0;justify-content:flex-start;}
+.mode-btn-toggle{
+  padding:6px 12px;
+  background:rgba(0,229,160,0.06);
+  border:1px solid rgba(0,229,160,0.25);
+  border-radius:20px;
+  color:var(--neon);
+  font-family:inherit;
+  font-weight:800;
+  font-size:11px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  transition:all 0.25s ease;
+  white-space:nowrap;
+  width:auto;
+  flex:0 0 auto;
+  letter-spacing:0.3px;
+}
+.mode-btn-toggle i{font-size:11px;}
+.mode-btn-toggle:hover{background:rgba(0,229,160,0.15);border-color:var(--neon);transform:translateY(-1px);}
+.mode-btn-toggle.activo{background:linear-gradient(135deg,var(--neon),var(--neon-hover));color:#0a0e17;border-color:var(--neon);box-shadow:0 4px 16px rgba(0,229,160,0.3);}
+.mode-btn-toggle.activo i{color:#0a0e17;}
 .view-grid{display:grid;gap:10px;width:100%;flex:1 1 auto;min-height:0;}
 .view-grid.empty{display:none;}
 .view-grid.v1{grid-template-columns:1fr;grid-template-rows:1fr;}
@@ -211,9 +227,9 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
   .channel-item{min-height:100px;padding:12px 8px;}
   .channel-item .ch-name{font-size:11.5px;}
   .channel-item .ch-comp{font-size:9px;}
-  .mode-buttons{gap:6px;margin-bottom:10px;}
-  .mode-btn{min-width:calc(33% - 4px);padding:8px 6px;font-size:10px;gap:4px;}
-  .mode-btn i{font-size:11px;}
+  .mode-buttons{gap:5px;margin-bottom:8px;}
+  .mode-btn-toggle{padding:5px 10px;font-size:10px;gap:4px;border-radius:14px;}
+  .mode-btn-toggle i{font-size:10px;}
 }
 
 @media(max-width:900px) and (orientation:landscape){
@@ -231,9 +247,9 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
   .header-deportes{margin-bottom:10px;}
   .titulo{font-size:17px;}
   .estado-transmitiendo{font-size:11px;padding:6px 14px;}
-  .mode-buttons{gap:6px;margin-bottom:8px;}
-  .mode-btn{padding:6px 8px;font-size:9px;min-width:80px;gap:4px;border-radius:8px;}
-  .mode-btn i{font-size:10px;}
+  .mode-buttons{gap:5px;margin-bottom:8px;}
+  .mode-btn-toggle{padding:5px 10px;font-size:9.5px;gap:4px;border-radius:14px;}
+  .mode-btn-toggle i{font-size:10px;}
   .info-partido{margin-top:10px;}
   .info-partido .titulo-partido-con-logos .fila-texto{font-size:15px;}
   .info-partido .titulo-partido-con-logos .fila-escudos{gap:40px;}
@@ -260,21 +276,10 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
   .titulo{font-size:19px;}
   .estado-transmitiendo{font-size:10.5px;padding:5px 11px;gap:5px;}
 
-  /* Modos ultra compactos y justificados */
-  .mode-buttons{gap:5px;margin-bottom:10px;}
-  .mode-btn{
-    min-width:0;
-    flex:1 1 0;
-    padding:6px 4px;
-    font-size:9px;
-    gap:4px;
-    border-radius:8px;
-    letter-spacing:0.1px;
-    font-weight:800;
-    justify-content:center;
-  }
-  .mode-btn i{font-size:10px;}
-  .mode-btn.info{padding:6px 4px;font-size:9px;gap:4px;}
+  /* Toggle compacto */
+  .mode-buttons{gap:5px;margin-bottom:8px;}
+  .mode-btn-toggle{padding:5px 10px;font-size:9.5px;gap:4px;border-radius:14px;}
+  .mode-btn-toggle i{font-size:10px;}
 
   .info-partido{margin-top:12px;}
   .info-partido .titulo-partido-con-logos{gap:6px;}
@@ -315,8 +320,8 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
 
 /* ===== CELULAR MUY PEQUEÑO (≤380px) ===== */
 @media(max-width:380px){
-  .mode-btn{font-size:8.5px;padding:5px 3px;gap:3px;}
-  .mode-btn i{font-size:9px;}
+  .mode-btn-toggle{padding:4px 8px;font-size:9px;gap:3px;border-radius:12px;}
+  .mode-btn-toggle i{font-size:9px;}
   .controles button{font-size:9px;padding:7px 3px;gap:3px;}
   .controles button i{font-size:9px;}
   .channel-item .ch-name{font-size:10px;}
@@ -381,9 +386,7 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
           </div>
         </div>
         <div class="mode-buttons">
-          <button class="mode-btn activo" id="btnModoSimple"><i class="fas fa-tv"></i> 1 partido</button>
-          <button class="mode-btn" id="btnModoMultiple"><i class="fas fa-layer-group"></i> Hasta 4</button>
-          <div class="mode-btn info" id="btnInfoCerrar"><i class="fas fa-times-circle"></i> Cerrar ✕</div>
+          <button class="mode-btn-toggle" id="btnToggleModo"><i class="fas fa-tv"></i> 1 partido</button>
         </div>
         <div class="view-grid v1" id="viewGrid"></div>
         <div class="view-grid-empty-state" id="emptyState">
@@ -445,8 +448,7 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
   var btnRecargar = document.getElementById('btnRecargar');
   var toastMultiview = document.getElementById('toastMultiview');
   var toastMsg = document.getElementById('toastMsg');
-  var btnModoSimple = document.getElementById('btnModoSimple');
-  var btnModoMultiple = document.getElementById('btnModoMultiple');
+  var btnToggleModo = document.getElementById('btnToggleModo');
   var btnCargar = document.getElementById('btn-cargar');
   var btnReiniciar = document.getElementById('btn-reiniciar');
   var btnVlc = document.getElementById('btn-vlc');
@@ -916,38 +918,44 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
     });
   }
 
-  function actualizarBotonesModo(){
-    if(modoMultiview){ btnModoMultiple.classList.add('activo'); btnModoSimple.classList.remove('activo'); }
-    else { btnModoSimple.classList.add('activo'); btnModoMultiple.classList.remove('activo'); }
+  function actualizarBotonModo(){
+    if(modoMultiview){
+      btnToggleModo.innerHTML = '<i class="fas fa-layer-group"></i> Hasta 4';
+      btnToggleModo.classList.add('activo');
+    } else {
+      btnToggleModo.innerHTML = '<i class="fas fa-tv"></i> 1 partido';
+      btnToggleModo.classList.add('activo');
+    }
+  }
+
+  function toggleModo(){
+    if(!modoMultiview){
+      modoMultiview = true;
+      actualizarBotonModo();
+      showToast('Vista múltiple activada: hasta 4 canales');
+      aplicarAudioAlSlotActivo();
+      renderizarSidebar();
+    } else {
+      modoMultiview = false;
+      actualizarBotonModo();
+      showToast('Modo simple: 1 solo canal a la vez');
+      var s = (slotActivo>=0)?slots[slotActivo]:null;
+      if(s && s.partido) reconstruirGrillaDesdeEstado([{partido:s.partido, urlIndex:s.urlIndex}], 0);
+      else {
+        var p = slots.find(function(x){return x.partido;});
+        if(p) reconstruirGrillaDesdeEstado([{partido:p.partido, urlIndex:p.urlIndex}], 0);
+        else reconstruirGrillaDesdeEstado([], -1);
+      }
+    }
   }
 
   function iniciarReproductor(){
     slotActivo = -1; slots = []; modoMultiview = false;
-    actualizarBotonesModo();
+    actualizarBotonModo();
     viewGrid.className='view-grid empty'; viewGrid.innerHTML='';
     emptyState.classList.add('visible');
     if(PARTIDOS.length>0) reconstruirGrillaDesdeEstado([{partido:PARTIDOS[0], urlIndex:0}], 0);
     else { actualizarSlotActivo(); renderizarSidebar(); actualizarBotonesEstado(); actualizarVisibilidadBotonFullscreen(); }
-  }
-
-  function activarModoSimple(){
-    if(!modoMultiview) return;
-    modoMultiview = false; actualizarBotonesModo();
-    showToast('Modo simple: 1 solo canal a la vez');
-    var s = (slotActivo>=0)?slots[slotActivo]:null;
-    if(s && s.partido) reconstruirGrillaDesdeEstado([{partido:s.partido, urlIndex:s.urlIndex}], 0);
-    else {
-      var p = slots.find(function(x){return x.partido;});
-      if(p) reconstruirGrillaDesdeEstado([{partido:p.partido, urlIndex:p.urlIndex}], 0);
-      else reconstruirGrillaDesdeEstado([], -1);
-    }
-  }
-  function activarModoMultiple(){
-    if(modoMultiview) return;
-    modoMultiview = true; actualizarBotonesModo();
-    showToast('Vista múltiple activada: hasta 4 canales');
-    aplicarAudioAlSlotActivo();
-    renderizarSidebar();
   }
 
   function actualizarVisibilidadBotonFullscreen(){
@@ -1054,8 +1062,7 @@ body.modo-teatro .btn-salir-teatro{display:flex;}
     desbloquearAudio();
     slots.forEach(function(s){ if(s.partido){ s.retryCount = 0; cargarStreamEnSlot(s, s.partido.urls[s.urlIndex]||s.partido.urls[0]); } });
   });
-  btnModoSimple.addEventListener('click', activarModoSimple);
-  btnModoMultiple.addEventListener('click', activarModoMultiple);
+  btnToggleModo.addEventListener('click', toggleModo);
   btnSalirHeader.addEventListener('click', showLogin);
 
   document.addEventListener('keydown', function(e){
